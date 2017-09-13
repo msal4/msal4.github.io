@@ -36,3 +36,6 @@ function draw() {
 function keyPressed() {
     if (key == " ")player.jump();
 }
+function mousePressed() {
+    player.jump();
+}

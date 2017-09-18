@@ -7,7 +7,7 @@ var game = new Phaser.Game(360, 640, Phaser.AUTO, "", {
 var background;
 var player;
 var pipes;
-
+var pipesManager = [];
 function preload() {
     game.load.image("background", "assets/images/background1.png");
     game.load.image("player", "assets/images/player1.png");
@@ -45,11 +45,11 @@ function create() {
 }
 
 function update() {
-    if (game.physics.arcade.overlap(player, pipes)) {
-        gameOver();
-    }
     if (pipes.centerX < -50) {
         spawnPipes();
+        pipesManager[0].children[0].kill();
+        pipesManager[0].children[1].kill();
+        pipesManager.splice(0, 1);
     }
 }
 
@@ -62,15 +62,21 @@ function spawnPipes() {
     pipes = game.add.group();
     pipes.enableBody = true;
     // Up
-    var pipeUp = pipes.create(game.world.width, game.world.height, "pipe1");
+    var pipeUp = pipes.create(
+        game.world.width,
+        game.world.height + 100,
+        "pipe1"
+    );
     pipeUp.anchor.setTo(0, 0.5);
     // Down
-    var pipeDown = pipes.create(game.world.width, 0, "pipe2");
+    var pipeDown = pipes.create(game.world.width, -100, "pipe2");
     pipeDown.anchor.setTo(0, 0.5);
 
     pipes.forEachAlive(function(element) {
         element.body.velocity.x -= 200;
     });
+    pipes.centerY = Math.random() * 500 + 50;
+    pipesManager.push(pipes);
 }
 function gameOver() {
     //Game over code here

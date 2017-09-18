@@ -45,7 +45,12 @@ function create() {
 }
 
 function update() {
-    game.physics.arcade.collide(player, pipes);
+    if (game.physics.arcade.overlap(player, pipes)) {
+        gameOver();
+    }
+    if (pipes.centerX < -50) {
+        spawnPipes();
+    }
 }
 
 function jump() {
@@ -64,6 +69,9 @@ function spawnPipes() {
     pipeDown.anchor.setTo(0, 0.5);
 
     pipes.forEachAlive(function(element) {
-        element.body.velocity.x -= 50;
+        element.body.velocity.x -= 200;
     });
+}
+function gameOver() {
+    //Game over code here
 }

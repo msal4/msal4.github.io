@@ -10,7 +10,6 @@ var pipes;
 var pipesManager = [];
 // start screen
 var playBtnDefault;
-var playBtnActive;
 var gameStarted = false;
 // score
 var score = 0;
@@ -25,6 +24,7 @@ function preload() {
     game.load.image("pipe1", "assets/images/pipe1.png");
     game.load.image("pipe2", "assets/images/pipe2.png");
     game.load.image("play_default", "assets/images/play_default.png");
+    game.load.image("play_active", "assets/images/play_active.png");
 }
 
 function create() {
@@ -56,14 +56,10 @@ function spawnPipes() {
     pipes = game.add.group();
     pipes.enableBody = true;
     // Up
-    var pipeUp = pipes.create(
-        game.world.width,
-        game.world.height + 100,
-        "pipe1"
-    );
+    var pipeUp = pipes.create(500, game.world.height + 100, "pipe1");
     pipeUp.anchor.setTo(0, 0.5);
     // Down
-    var pipeDown = pipes.create(game.world.width, -100, "pipe2");
+    var pipeDown = pipes.create(500, -100, "pipe2");
     pipeDown.anchor.setTo(0, 0.5);
 
     pipes.forEachAlive(function(element) {
@@ -73,6 +69,7 @@ function spawnPipes() {
     pipesManager.push(pipes);
 }
 function startScreen() {
+    // Default state
     playBtnDefault = game.add.sprite(
         game.world.centerX,
         game.world.centerY,

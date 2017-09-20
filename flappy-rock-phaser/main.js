@@ -1,3 +1,4 @@
+// Flappy Rock
 var game = new Phaser.Game(360, 640, Phaser.AUTO, "", {
     preload: preload,
     create: create,

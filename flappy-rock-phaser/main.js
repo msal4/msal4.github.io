@@ -162,7 +162,7 @@ function removePipes() {
     scoreText.text = score;
 }
 function showScore() {
-    scoreText = game.add.text(game.world.centerX, 50, score);
+    scoreText = game.add.text(game.world.centerX, 50, "" + score);
 
     //	Center align
     scoreText.anchor.set(0.5);

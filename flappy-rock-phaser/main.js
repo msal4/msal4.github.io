@@ -13,6 +13,7 @@ var playBtnDefault;
 var gameStarted = false;
 // score
 var score = 0;
+scoreAv = 1;
 var scoreText;
 // game over
 var gameOverText;
@@ -81,20 +82,24 @@ function startScreen() {
 }
 
 function startGame() {
+    scoreAv = 0;
     score = 0;
     scoreText.text = score;
     if (timesPlayed > 0) gameOverText.kill();
     timesPlayed++;
 
     gameStarted = true;
-    playBtnDefault.visible = false;
+
+    var startAnimation = game.add.tween(playBtnDefault);
+    startAnimation.to({ alpha: 0, y: 600 }, 100);
+    startAnimation.start();
+    startAnimation.onComplete.add(function() {
+        playBtnDefault.visible = false;
+    });
+
     // Add the player and set its properties
-    player = game.add.sprite(
-        game.world.width / 2,
-        game.world.height / 2,
-        "player"
-    );
-    player.scale.setTo(0.5);
+    player = game.add.sprite(100, 200, "player");
+    player.scale.setTo(0.3);
     player.anchor.setTo(0.5);
     // Player physics
     game.physics.arcade.enable(player);
@@ -122,6 +127,12 @@ function gameOver() {
         "Game Over!"
     );
 
+    // Tween animation
+    playBtnDefault.visible = true;
+    var overAnimation = game.add.tween(playBtnDefault);
+    overAnimation.to({ alpha: 1, y: game.world.centerY }, 100);
+    overAnimation.start();
+
     //	Center align
     gameOverText.anchor.set(0.5);
     gameOverText.align = "center";
@@ -131,18 +142,22 @@ function gameOver() {
     gameOverText.fontSize = 50;
     gameOverText.fontWeight = "bold";
 
-    gameOverText.fill = "#476065";
+    gameOverText.fill = "#fff";
 
-    playBtnDefault.visible = true;
+    var textAnimation = game.add.tween(gameOverText);
+    textAnimation.to({ tint: rgb(255, 100, 100) });
+    textAnimation.start();
+
+    // playBtnDefault.visible = true;
     removePipes();
     player.kill();
-    // socreText.kill();
 }
 function removePipes() {
     pipesManager[0].children[0].kill();
     pipesManager[0].children[1].kill();
     pipesManager.splice(0, 1);
-    score++;
+    scoreAv++;
+    score += scoreAv;
     scoreText.text = score;
 }
 function showScore() {
@@ -158,4 +173,8 @@ function showScore() {
     scoreText.fontWeight = "bold";
 
     scoreText.fill = "#476065";
+}
+
+function rgb(r, g, b) {
+    return (r << 16) | (g << 8) | b;
 }

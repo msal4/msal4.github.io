@@ -37,8 +37,8 @@ function create() {
     game.scale.pageAlignVertically = true;
 
     // Add background
-    background = game.add.sprite(0, -1400, "background");
-    background.scale.setTo(11);
+    background = game.add.sprite(0, 0, "background");
+    background.scale.setTo(0.9);
     startScreen();
     showScore();
 }
@@ -58,16 +58,20 @@ function spawnPipes() {
     pipes = game.add.group();
     pipes.enableBody = true;
     // Up
-    var pipeUp = pipes.create(500, game.world.height + 100, "pipe1");
+    var pipeUp = pipes.create(
+        game.world.width,
+        game.world.height + 100,
+        "pipe1"
+    );
     pipeUp.anchor.setTo(0, 0.5);
     // Down
-    var pipeDown = pipes.create(500, -100, "pipe2");
+    var pipeDown = pipes.create(game.world.width, -100, "pipe2");
     pipeDown.anchor.setTo(0, 0.5);
 
     pipes.forEachAlive(function(element) {
-        element.body.velocity.x -= 200;
+        element.body.velocity.x -= 300;
     });
-    pipes.centerY = Math.random() * 500 + 50;
+    pipes.centerY = randomNum(200, 500);
     pipesManager.push(pipes);
 }
 function startScreen() {
@@ -99,7 +103,7 @@ function startGame() {
     });
 
     // Add the player and set its properties
-    player = game.add.sprite(100, 200, "player");
+    player = game.add.sprite(game.world.width / 3, 200, "player");
     player.scale.setTo(0.3);
     player.anchor.setTo(0.5);
     // Player physics
@@ -178,4 +182,8 @@ function showScore() {
 
 function rgb(r, g, b) {
     return (r << 16) | (g << 8) | b;
+}
+
+function randomNum(min, max) {
+    return Math.random() * (max - min + 1) + min;
 }

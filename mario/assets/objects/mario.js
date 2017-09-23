@@ -7,12 +7,13 @@ function Mario(x, y, gravity, jumpForce, speed) {
     this.speed = speed;
     var cursors = game.input.keyboard.createCursorKeys();
     //create sprite
-    this.sprite = game.add.sprite(this.x, this.y, "marioSmall", 0);
+    this.sprite = game.add.sprite(this.x, this.y, "mario", 0);
     this.sprite.anchor.setTo(0.5);
     //enable physics
     game.physics.arcade.enable(this.sprite);
-    // this.sprite.body.collideWorldBounds = true;
     this.sprite.body.gravity.y = this.gravity;
+    //collide with the world boundaries
+    this.sprite.body.collideWorldBounds = true;
     //create animation
     this.sprite.animations.add("left", [2, 4, 5], 10, false);
     //check input for movement and jump
@@ -22,7 +23,7 @@ function Mario(x, y, gravity, jumpForce, speed) {
         //jump
         if (cursors.up.isDown) {
             this.sprite.animations.frame = 5;
-            if (this.sprite.body.touching.down) {
+            if (this.sprite.body.onFloor()) {
                 this.sprite.body.velocity.y = -jumpForce;
             }
         }
@@ -30,16 +31,16 @@ function Mario(x, y, gravity, jumpForce, speed) {
         if (cursors.left.isDown) {
             this.sprite.body.velocity.x = -speed;
             this.sprite.scale.x = -1;
-            if (this.sprite.body.touching.down) {
+            if (this.sprite.body.onFloor()) {
                 this.sprite.animations.play("left");
             }
         } else if (cursors.right.isDown) {
             this.sprite.body.velocity.x = speed;
             this.sprite.scale.x = 1;
-            if (this.sprite.body.touching.down) {
+            if (this.sprite.body.onFloor()) {
                 this.sprite.animations.play("left");
             }
-        } else if (this.sprite.body.touching.down) {
+        } else if (this.sprite.body.onFloor()) {
             this.sprite.animations.stop();
             this.sprite.animations.frame = 0;
         }

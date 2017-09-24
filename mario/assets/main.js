@@ -29,7 +29,6 @@ function create() {
     map.setCollisionBetween(14, 16);
     map.setCollisionBetween(27, 29);
     map.setCollisionBetween(20, 22);
-    map.setTileIndexCallback(14, hitCoinBlock, this);
     layer.wrap = true;
     //create instance of mario
     mario = new Mario(32, 0, 1000, 400, 200);

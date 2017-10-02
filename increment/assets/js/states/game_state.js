@@ -1,16 +1,13 @@
 var GameState = {
-	score: 0,
 	create: function() {
+		this.score = 0;
 		this.game.stage.backgroundColor = "#fff";
-		//create 4 zombies to start with
+
+		//create zombie
 		this.zombies = this.game.add.group();
-		// for (var j = 0; j < 2; j++) {
-		//     for (var i = 0; i < 2; i++) {
 		this.zombies.add(
 			new Zombie(this.game.world.centerX, this.game.world.centerY)
 		);
-		//     }
-		// }
 
 		//create a human every 2 secs
 		this.humans = this.game.add.group();
@@ -60,6 +57,7 @@ var GameState = {
 		this.updateZombiesStat();
 	},
 	turnHuman: function(zombie, human) {
+		//decrease human health
 		game.time.events.add(
 			Phaser.Timer.SECOND * 2,
 			function() {
@@ -67,7 +65,7 @@ var GameState = {
 			},
 			this
 		);
-
+		//spawn zombie instead of human
 		if (human.health < 0) {
 			GameState.zombies.add(
 				new Zombie(human.position.x, human.position.y)

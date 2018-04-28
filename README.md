@@ -1,6 +1,7 @@
 # msal4.github.io
-The place where my games reside.<br />
-Find them here: [msal4.github.io][msal4.github.io]<br />
+Collection of games made by me.<br />
+Find them here:
+[collection][msal4.github.io]<br />
 ### Flappy Rock
 ![Flappy Rock][flapUrl]
 ### Mario

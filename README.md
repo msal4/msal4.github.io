@@ -1,6 +1,6 @@
 # msal4.github.io
 Collection of games made by me.<br />
-Find them here: <a href="https://msal4.github.io" target="_blank"><br />
+Find them <a href="https://msal4.github.io" target="_blank">here</a>.<br />
 ### Flappy Rock
 ![Flappy Rock][flapUrl]
 ### Mario

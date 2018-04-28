@@ -1,13 +1,13 @@
 # msal4.github.io
 The place where my games reside.<br />
 Find them here: [msal4.github.io][msal4.github.io]<br />
-###Flappy Rock
+### Flappy Rock
 ![Flappy Rock][flapUrl]
-###Mario
+### Mario
 ![Mario][marioUrl]
-###increment
+### increment
 ![increment][incrementUrl]
-###Mona Street
+### Mona Street
 ![Mona Street][monaUrl]
 
 [flapUrl]: https://screenshotscdn.firefoxusercontent.com/images/8388b7e0-5d47-42a3-b610-ce072c111142.png

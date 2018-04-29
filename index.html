@@ -15,7 +15,7 @@
         body {
             font-family: 'Segoe UI', Calibri, 'Helvetica Neue', Helvetica, sans-serif, arial, consolas;
             font-weight: 300;
-            background: #ffffff;
+            background: #34495e;
         }
 
         #outer {
@@ -29,13 +29,17 @@
         }
 
         a {
-            color: #2086bf;
+            color: #81ecec;
             text-decoration: none;
         }
 
         a:hover {
             text-decoration: underline;
-            color: #156c9b;
+            color: #00cec9;
+        }
+
+        a:active {
+            color: #74b9ff;
         }
 
         .text-light {
@@ -59,17 +63,13 @@
         hr.fat {
             height: 3px;
         }
-        .blog-year {
-            cursor: pointer;
-        }
         .site-logo-image {
             border-radius: 50%;
         }
     </style>
-    <script src="//code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 </head>
 
-<body style="padding: 50px;">
+<body style="padding: 50px; color: white;">
 
 <div id="outer" style="width:100%">
     <div id="inner">
@@ -110,7 +110,6 @@
     <li><a href="https://github.com/msal4/increment" target="_blank">msal4/increment</a> increment game made with phaser</li>
     <li><a href="https://github.com/msal4/mona-street" target="_blank">msal4/royal_news</a> Mona Street switching dimensions game</li>
 </ul>
-
 <h1 class="text-light">Blog</h1>
 <ul>
     
@@ -120,26 +119,5 @@
  </li>
     
 </ul>
-
-
-<script>
-    $(function () {
-        $('.blog-year').each(function(el) {
-            var currentYear = (new Date()).getFullYear();
-            var blogYear = $(this).html();
-            var count = $(this).next('ul').find('li').length;
-            $(this).html($(this).html() + ' (' + count + ')')
-
-            if(blogYear >= currentYear - 1) {
-                // show
-                $(this).next('ul').toggle();
-            }
-        });
-
-        $('.blog-year').on('click', function () {
-           $(this).next('ul').toggle();
-        });
-    });
-</script>
 </body>
 </html>

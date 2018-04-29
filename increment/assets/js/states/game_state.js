@@ -1,7 +1,7 @@
 var GameState = {
 	create: function() {
 		this.score = 0;
-		this.game.stage.backgroundColor = "#fff";
+		this.game.stage.backgroundColor = "#34495e";
 
 		//create zombie
 		this.zombies = this.game.add.group();
